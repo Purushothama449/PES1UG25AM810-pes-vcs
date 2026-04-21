@@ -1,6 +1,8 @@
 // object.c — Content-addressable object store
 // Phase 1: implemented object_read
 // Phase 1: fixed hashing logic
+// Phase 1: added atomic write
+
 
 #include "pes.h"
 #include <stdio.h>
