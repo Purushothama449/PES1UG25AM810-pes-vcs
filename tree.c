@@ -115,23 +115,22 @@ int tree_serialize(const Tree *tree, void **data_out, size_t *len_out) {
 int tree_from_index(ObjectID *id_out) {
     Index index;
 
-    // Load index (staged files)
+    // Load index
     if (index_load(&index) != 0) return -1;
 
     Tree tree;
     tree.count = 0;
 
-    // Convert index entries → tree entries
     for (int i = 0; i < index.count; i++) {
         IndexEntry *ie = &index.entries[i];
 
         TreeEntry *te = &tree.entries[tree.count++];
 
-        // copy mode and hash
+        // copy mode + hash
         te->mode = ie->mode;
         te->hash = ie->hash;
 
-        // extract file name (ignore directory path)
+        // extract filename from path
         const char *name = strrchr(ie->path, '/');
         if (name) name++;
         else name = ie->path;
@@ -140,11 +139,13 @@ int tree_from_index(ObjectID *id_out) {
     }
 
     // serialize tree
-    void *data = NULL;
-    size_t len = 0;
-    if (tree_serialize(&tree, &data, &len) != 0) return -1;
+    void *data;
+    size_t len;
 
-    // write tree object
+    if (tree_serialize(&tree, &data, &len) != 0)
+        return -1;
+
+    // store tree object
     if (object_write(OBJ_TREE, data, len, id_out) != 0) {
         free(data);
         return -1;
