@@ -184,3 +184,4 @@ int index_add(Index *index, const char *path) {
 // Phase 3: implemented index_load
 // Phase 3: implemented index_save
 // Phase 3: implemented index_add
+// Phase 3: final tested version
