@@ -2,6 +2,8 @@
 // Phase 1: implemented object_read
 // Phase 1: fixed hashing logic
 // Phase 1: added atomic write
+// Phase 1: final tested version
+
 
 
 #include "pes.h"
