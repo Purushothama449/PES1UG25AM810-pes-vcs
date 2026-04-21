@@ -157,3 +157,5 @@ int tree_from_index(ObjectID *id_out) {
 
 // Phase 2: start tree implementation
 // Phase 2: implemented tree_from_index
+// Phase 2: added serialization logic
+
