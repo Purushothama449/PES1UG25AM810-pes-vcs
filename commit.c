@@ -220,3 +220,4 @@ int commit_create(const char *message, ObjectID *commit_id_out) {
 // Phase 4: start commit implementation
 // Phase 4: implemented tree linking
 
+// Phase 4: added parent handling
